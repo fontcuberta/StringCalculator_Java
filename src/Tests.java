@@ -38,19 +38,9 @@ class Tests {
         assertEquals(sumNumbersFrom("//#;1#1"), 2);
     }
 
-
     private int sumNumbersFrom(String expression) {
 
-        String separator = getSeparatorFrom(expression);
-        String expressionToAdd;
-
-        if (expression.contains("//")) {
-            expressionToAdd = expression.substring(expression.indexOf(";") + 1);
-        } else {
-            expressionToAdd = expression;
-        }
-
-        String[] numbers = expressionToAdd.split(separator);
+        String[] numbers = getNumbersFrom(expression);
 
         return Arrays.stream(numbers)
                 .filter(number -> number.matches("\\d"))
@@ -58,11 +48,25 @@ class Tests {
                 .sum();
     }
 
+
+    private String[] getNumbersFrom(String expression) {
+        String separator = getSeparatorFrom(expression);
+        String expressionToAdd = getExpression(expression);
+        return expressionToAdd.split(separator);
+    }
+
     private String getSeparatorFrom(String expression) {
         if (expression.contains("//")) {
             return expression.substring(2, expression.indexOf(";"));
         }
         return ",";
+    }
+
+    private String getExpression(String expression) {
+        if (expression.contains("//")) {
+            return expression.substring(expression.indexOf(";") + 1);
+        }
+        return expression;
     }
 
 }
