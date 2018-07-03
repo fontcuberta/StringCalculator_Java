@@ -29,6 +29,8 @@ class Tests{
     @Test
     void it_should_only_add_numbers() {
         assertEquals(sumNumbersFrom("a"), 0);
+        assertEquals(sumNumbersFrom("a,b"), 0);
+        assertEquals(sumNumbersFrom("a,1"), 1);
     }
 
     private int sumNumbersFrom(String expression) {
