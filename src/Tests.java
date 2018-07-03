@@ -26,12 +26,16 @@ class Tests{
         assertEquals(sumNumbersFrom("1,1,1"), 3);
     }
 
+    @Test
+    void it_should_only_add_numbers() {
+        assertEquals(sumNumbersFrom("a"), 0);
+    }
+
     private int sumNumbersFrom(String expression) {
 
         String[] numbers = expression.split(",");
 
         if (expression.contains(",")) {
-
             return Arrays.stream(numbers)
                     .mapToInt(Integer::parseInt)
                     .sum();
