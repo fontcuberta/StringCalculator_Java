@@ -35,13 +35,10 @@ class Tests{
 
         String[] numbers = expression.split(",");
 
-        if (expression.contains(",")) {
-            return Arrays.stream(numbers)
-                    .mapToInt(Integer::parseInt)
-                    .sum();
-        }
-
-        return Integer.parseInt(expression);
+        return Arrays.stream(numbers)
+                .filter(number -> number.matches("\\d"))
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 
 }
