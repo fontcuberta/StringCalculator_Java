@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class Tests{
+class Tests {
 
     // 1 -> 1
     // 1,1 -> 2
@@ -15,7 +15,7 @@ class Tests{
 
 
     @Test
-    void it_should_parse_to_int_when_String_have_one_element(){
+    void it_should_parse_to_int_when_String_have_one_element() {
         assertEquals(sumNumbersFrom("1"), 1);
         assertEquals(sumNumbersFrom("2"), 2);
     }
@@ -39,17 +39,14 @@ class Tests{
     }
 
 
-
     private int sumNumbersFrom(String expression) {
 
-        String separator;
+        String separator = getSeparatorFrom(expression);
         String expressionToAdd;
 
         if (expression.contains("//")) {
-            separator = expression.substring(2, expression.indexOf(";"));
             expressionToAdd = expression.substring(expression.indexOf(";") + 1);
         } else {
-            separator = ",";
             expressionToAdd = expression;
         }
 
@@ -59,6 +56,13 @@ class Tests{
                 .filter(number -> number.matches("\\d"))
                 .mapToInt(Integer::parseInt)
                 .sum();
+    }
+
+    private String getSeparatorFrom(String expression) {
+        if (expression.contains("//")) {
+            return expression.substring(2, expression.indexOf(";"));
+        }
+        return ",";
     }
 
 }
