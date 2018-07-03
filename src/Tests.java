@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -39,19 +40,21 @@ class Tests {
     }
 
     private int sumNumbersFrom(String expression) {
-
         String[] numbers = getNumbersFrom(expression);
-
         return Arrays.stream(numbers)
-                .filter(number -> number.matches("\\d"))
+                .filter(isNumber())
                 .mapToInt(Integer::parseInt)
                 .sum();
+    }
+
+    private Predicate<String> isNumber() {
+        return number -> number.matches("\\d");
     }
 
 
     private String[] getNumbersFrom(String expression) {
         String separator = getSeparatorFrom(expression);
-        String expressionToAdd = getExpression(expression);
+        String expressionToAdd = getNumbersWithoutSeparator(expression);
         return expressionToAdd.split(separator);
     }
 
@@ -62,7 +65,7 @@ class Tests {
         return ",";
     }
 
-    private String getExpression(String expression) {
+    private String getNumbersWithoutSeparator(String expression) {
         if (expression.contains("//")) {
             return expression.substring(expression.indexOf(";") + 1);
         }
