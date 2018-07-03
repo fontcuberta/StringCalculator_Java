@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -49,7 +48,7 @@ class Tests {
 
     private String[] getNumbersFrom(String expression) {
         String separator = getSeparatorFrom(expression);
-        String expressionToAdd = getNumbersWithoutSeparator(expression);
+        String expressionToAdd = getNumbersWithoutCustomSeparator(expression);
         return expressionToAdd.split(separator);
     }
 
@@ -60,9 +59,10 @@ class Tests {
         return ",";
     }
 
-    private String getNumbersWithoutSeparator(String expression) {
+    private String getNumbersWithoutCustomSeparator(String expression) {
         if (hasCustomSeparator(expression)) {
-            return expression.substring(expression.indexOf(";") + 1);
+            int beginningOfNumbersString = expression.indexOf(";") + 1;
+            return expression.substring(beginningOfNumbersString);
         }
         return expression;
     }
