@@ -5,8 +5,12 @@ public class Tests{
     public int stringCalculator (String x){
         String[] y = x.split(",");
 
-        if (x.length()>1){
+        if (y.length == 2){
             return Integer.parseInt(y[0]) + Integer.parseInt(y[1]);
+        }
+
+        if (y.length == 3){
+            return Integer.parseInt(y[0]) + Integer.parseInt(y[1])+ Integer.parseInt(y[2]);
         }
         return Integer.parseInt(x);
     }
