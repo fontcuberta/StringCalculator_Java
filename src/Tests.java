@@ -18,9 +18,15 @@ public class Tests{
     }
 
     @Test
-    public void itShouldReturnTheAdditionOfTwoNumberAsString(){
+    public void itShouldReturnTheAdditionOfTwoNumbersAsString(){
         assertEquals(stringCalculator("1,1"), 2);
         assertEquals(stringCalculator("1,2"), 3);
-
     }
+
+    @Test
+    public void itShouldReturnTheAdditionOfThreeNumbersAsString(){
+        assertEquals(stringCalculator("1,1,1"), 3);
+        assertEquals(stringCalculator("1,2,3"), 6);
+    }
+
 }
