@@ -33,6 +33,11 @@ class Tests{
         assertEquals(sumNumbersFrom("a,1"), 1);
     }
 
+    @Test
+    void it_should_add_numbers_using_custom_separator() {
+        assertEquals(sumNumbersFrom("//#;1#1"), 2);
+    }
+
     private int sumNumbersFrom(String expression) {
 
         String[] numbers = expression.split(",");
