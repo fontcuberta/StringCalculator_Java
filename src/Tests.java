@@ -9,6 +9,12 @@ public class Tests{
     @Test
     public void itShouldReturnAnIntegerWhenGivenOneNumberAsString(){
         assertEquals(stringCalculator("1"), 1);
+
     }
 
+    @Test
+    public void itShouldReturnTheAdditionOfTwoNumberAsString(){
+        assertEquals(stringCalculator("1,1"), 2);
+
+    }
 }
