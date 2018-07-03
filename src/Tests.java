@@ -1,36 +1,17 @@
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Tests{
-    public int stringCalculator (String x){
-        String[] y = x.split(",");
-
-        if (y.length == 2){
-            return Integer.parseInt(y[0]) + Integer.parseInt(y[1]);
-        }
-
-        if (y.length == 3){
-            return Integer.parseInt(y[0]) + Integer.parseInt(y[1])+ Integer.parseInt(y[2]);
-        }
-        return Integer.parseInt(x);
-    }
 
     @Test
-    public void itShouldReturnAnIntegerWhenGivenOneNumberAsString(){
-        assertEquals(stringCalculator("1"), 1);
-
+    public void it_should_parse_to_int_when_String_have_one_element (){
+        assertEquals(sumNumbersFrom("1"), 1);
     }
 
-    @Test
-    public void itShouldReturnTheAdditionOfTwoNumbersAsString(){
-        assertEquals(stringCalculator("1,1"), 2);
-        assertEquals(stringCalculator("1,2"), 3);
+    private int sumNumbersFrom(String expression) {
+        return 0;
     }
 
-    @Test
-    public void itShouldReturnTheAdditionOfThreeNumbersAsString(){
-        assertEquals(stringCalculator("1,1,1"), 3);
-        assertEquals(stringCalculator("1,2,3"), 6);
-    }
 
 }
