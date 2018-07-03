@@ -42,15 +42,10 @@ class Tests {
     private int sumNumbersFrom(String expression) {
         String[] numbers = getNumbersFrom(expression);
         return Arrays.stream(numbers)
-                .filter(isNumber())
+                .filter(this::isNumber)
                 .mapToInt(Integer::parseInt)
                 .sum();
     }
-
-    private Predicate<String> isNumber() {
-        return number -> number.matches("\\d");
-    }
-
 
     private String[] getNumbersFrom(String expression) {
         String separator = getSeparatorFrom(expression);
@@ -59,17 +54,25 @@ class Tests {
     }
 
     private String getSeparatorFrom(String expression) {
-        if (expression.contains("//")) {
+        if (hasCustomSeparator(expression)) {
             return expression.substring(2, expression.indexOf(";"));
         }
         return ",";
     }
 
     private String getNumbersWithoutSeparator(String expression) {
-        if (expression.contains("//")) {
+        if (hasCustomSeparator(expression)) {
             return expression.substring(expression.indexOf(";") + 1);
         }
         return expression;
+    }
+
+    private boolean isNumber(String number) {
+        return number.matches("\\d");
+    }
+
+    private boolean hasCustomSeparator(String expression) {
+        return expression.contains("//");
     }
 
 }
